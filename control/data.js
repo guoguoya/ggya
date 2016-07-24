@@ -15,4 +15,4 @@ dataRouter.post('/', function(req, res, next){
     });
 });
 
-modules.exports = router ;
+module.exports = dataRouter ;
