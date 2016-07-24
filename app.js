@@ -10,6 +10,8 @@ var users = require('./routes/users');
 
 //control 
 var data = require('./control/data');
+var center = require('./control/controlCenter');
+
 
 var app = express();
 
