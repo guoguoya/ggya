@@ -2,6 +2,25 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
+router.get('/home', function(req, res, next){
+    var options = {
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    res.sendFile('./index.html', options, function(err){
+        if(err){
+            return console.error(err);
+            res.status(err.status).end();
+        }
+        else{
+            console.log('send success');
+        }
+    });
+});
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
