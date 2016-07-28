@@ -12,8 +12,26 @@ var users = require('./routes/users');
 var data = require('./control/data');
 var center = require('./control/controlCenter');
 
+//webpack hot
+var webpack = require('webpack')
+var WebpackDevMiddleware = require('webpack-dev-middleware')
+var WebpackHotMiddleware = require('webpack-hot-middleware')
+
+var config = require('./webpack.dev.config');
+var compiler = webpack(config);
 
 var app = express();
+
+app.use(WebpackDevMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  stats: { colors: true }
+}));
+
+app.use(WebpackHotMiddleware(compiler, {
+  log: console.log
+}));
+
+
 console.log('dirname='+__dirname);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
