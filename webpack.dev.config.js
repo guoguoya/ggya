@@ -1,5 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
+console.log('path='+__dirname);
+console.log('path='+path.join(__dirname, '/index/'));
 module.exports = {
 	entry: [
 		'webpack/hot/dev-server',
@@ -20,7 +22,7 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loaders: ['react-hot','babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
-				include: path.join(__dirname, 'index')
+				include: [path.join(__dirname, 'index'), path.join(__dirname, '/containers/')]
 			}
 		]
 	}

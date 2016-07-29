@@ -1,8 +1,10 @@
 import 'babel-polyfill'
-import React from 'react'
+import React , { Component } from 'react'
 import { render } from 'react-dom'
+import Page from './containers/page.js'
+
 
 render(
-  <div>react</div>,
+  <Page />,
   document.getElementById('basePage')
 );
