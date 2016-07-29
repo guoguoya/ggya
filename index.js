@@ -1,5 +1,8 @@
-var path = require('path');
-var a = 'a';
-var b = 'b';
-var c = 'c';
-console.log(a+b);
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+
+render(
+  <div>react</div>,
+  document.getElementById('basePage')
+);
