@@ -28,6 +28,12 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get('/user/:id', function(req, res, next){
- res.render('index', {title: req.params.id });
+  res.render('index', {title: req.params.id });
+});
+router.post('/home/json', function(req, res, next){
+  res.json({ 'item': 'items'});
+});
+router.get('/home/json', function(req, res, next){
+  res.json({ 'item': 'items'});
 });
 module.exports = router;

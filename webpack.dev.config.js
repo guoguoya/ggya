@@ -22,7 +22,8 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				loaders: ['react-hot','babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
-				include: [path.join(__dirname, 'index'), path.join(__dirname, '/containers/')]
+				include: [path.join(__dirname, 'index'), path.join(__dirname, '/containers/'), path.join(__dirname, '/components/'),
+				 path.join(__dirname, '/actions/'), path.join(__dirname, '/components/'), path.join(__dirname, '/containers/'), path.join(__dirname, '/reducers/')]
 			}
 		]
 	}
