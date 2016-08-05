@@ -3,8 +3,21 @@
 /**
  * Module dependencies.
  */
+// prod and dev 
+console.log(process.env.NODE_ENV);
+console.log('.............');
+if( process.env.NODE_ENV == 'development'){
+  var app = require('../app');
+}
+else if( process.env.NODE_ENV == 'production'){
+  var app = require('../appProd');
+}
+else {
+  console.log('we just have development and production');
+  console.log('environment is no exist');
+  return ;
+}
 
-var app = require('../app');
 var debug = require('debug')('ggyapp:server');
 var http = require('http');
 
@@ -12,7 +25,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3030');
 app.set('port', port);
 
 /**
@@ -25,7 +38,9 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, function(){
+  console.log('server start');
+});
 server.on('error', onError);
 server.on('listening', onListening);
 

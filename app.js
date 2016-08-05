@@ -33,6 +33,7 @@ app.use(WebpackHotMiddleware(compiler, {
 
 
 console.log('dirname='+__dirname);
+console.log('app.js');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -44,9 +45,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+// jsonrouter pagerouter
 app.use('/', routes);
 app.use('/users', users);
+app.get('*', function (req, res) {
+  console.log('one request from client to server.')
+  res.sendFile(path.join(__dirname,'/routes/index.html'))
+})
 
 //control
 app.use('/data', data);

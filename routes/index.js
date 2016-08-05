@@ -3,7 +3,7 @@ var router = express.Router();
 var path = require('path');
  
 /* GET home page. */
-router.get('/home', function(req, res, next){
+/*router.get('/home', function(req, res, next){
     var options = {
         dotfiles: 'deny',
         headers: {
@@ -22,14 +22,7 @@ router.get('/home', function(req, res, next){
             console.log('send success');
         }
     });
-});
-router.get('/', function(req, res, next) {
-  console.log('index');
-  res.render('index', { title: 'Express' });
-});
-router.get('/user/:id', function(req, res, next){
-  res.render('index', {title: req.params.id });
-});
+});*/
 router.post('/home/json', function(req, res, next){
   res.json({ 'item': 'items'});
 });
