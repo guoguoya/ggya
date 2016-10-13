@@ -15,12 +15,27 @@ module.exports = {
         loaders: [
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: 'node_modules/',
                 loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-0'],
                 include: [path.join(__dirname, 'index'), path.join(__dirname, '/containers/'), path.join(__dirname, '/components/'),
                  path.join(__dirname, '/actions/'), path.join(__dirname, '/components/'), path.join(__dirname, '/containers/'), path.join(__dirname, '/reducers/')
                  ,path.join(__dirname, 'routes')]
             }
+            {
+                test: /\.less$/,
+                exclude: 'node_modules/',
+                include: [ path.join(__dirname,'/public/less/')]
+            }
         ]
     }
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: JSON.stringify('development'),
+                BROWSER: JSON.stringify(true),
+                TITLE: 'ggya'
+            }
+        }),
+
+    ];
 }

@@ -4,13 +4,14 @@ import React , { Component } from 'react'
 import Page from './containers/page'
 import Home from './containers/Home'
 import Article from './containers/Article'
+import BasePage from './containers/BasePage'
 //router
 import {Router, Route, Link, IndexRoute, Redirect, browserHistory} from 'react-router';
 
 module.exports = (
-    <Router history= { browserHistory } >
-      <Route path='/' component= { Home } />
+    <Route path='/' component= { BasePage } >
       <Route path='/page' component= { Page } />
       <Route path='/article' component= { Article } />
-    </Router>
+      <IndexRoute component={ Home } />
+    </Route>
 );

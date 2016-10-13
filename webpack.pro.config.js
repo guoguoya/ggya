@@ -9,7 +9,10 @@ module.exports = {
         filename: 'server.bundle.js'
     },
     plugins: [
-    ],
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin()
+    ] ,
     devtool: false,
     target: 'node',
     externals: fs.readdirSync(path.resolve(__dirname, 'node_modules')).concat([

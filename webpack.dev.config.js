@@ -7,11 +7,12 @@ module.exports = {
 	entry: [
 		'webpack/hot/dev-server',
 		'webpack-hot-middleware/client',
-		'./index.js'
+		'./index.js',
+		'./public/less/main.less'
 	],
 	output: {
 		path: '/',
-		publicPath: '/javascript/',
+		publicPath: '/public/',
 		filename: 'bundle.js'
 	},
 	plugins: [
@@ -26,6 +27,10 @@ module.exports = {
 				include: [path.join(__dirname, 'index'), path.join(__dirname, '/containers/'), path.join(__dirname, '/components/'),
 				 path.join(__dirname, '/actions/'), path.join(__dirname, '/components/'), path.join(__dirname, '/containers/'), path.join(__dirname, '/reducers/')
 				 ,path.join(__dirname, 'routes')]
+			},
+			{
+				test: /\.less$/,
+				loader: "style!css!less"
 			}
 		]
 	}

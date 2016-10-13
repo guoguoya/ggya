@@ -113,7 +113,7 @@
 	  _reactRedux.Provider,
 	  { store: store },
 	  _react2.default.createElement(_reactRouter.Router, { routes: _routes2.default, history: _reactRouter.browserHistory })
-	), document.getElementById('basePage'));
+	), document.getElementById('app'));
 
 /***/ },
 /* 2 */
@@ -31768,7 +31768,7 @@
 	                ),
 	                _react2.default.createElement(
 	                    _reactRouter.Link,
-	                    { to: '/home' },
+	                    { to: '/' },
 	                    'home'
 	                ),
 	                _react2.default.createElement(
@@ -31780,7 +31780,8 @@
 	                    _reactRouter.Link,
 	                    { to: '/page' },
 	                    'page'
-	                )
+	                ),
+	                this.props.children
 	            );
 	        }
 	    }]);
@@ -37371,9 +37372,8 @@
 
 	//page
 	module.exports = _react2.default.createElement(
-	  _reactRouter.Router,
-	  { history: _reactRouter.browserHistory },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default }),
+	  _reactRouter.Route,
+	  { path: '/', component: _Home2.default },
 	  _react2.default.createElement(_reactRouter.Route, { path: '/page', component: _page2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/article', component: _Article2.default })
 	);

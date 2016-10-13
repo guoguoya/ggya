@@ -28,8 +28,10 @@ export function fetchPost(url){
     return function(dispatch){
         dispatch(requestPost());
         return fetch(url)
-        .then( response => response.json())
-        .then( json => { dispatch(receivePost(json)) } )
+        //.then( response => response.json())
+        //.then( json => { dispatch(receivePost(json)) } )
+        .then( response => response.blob())
+        .then( myblob => { console.log(myblob)})
 
     }
 }

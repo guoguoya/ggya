@@ -1,5 +1,4 @@
 var fs = require('fs');
-var data  = require('./data');
 var path = require('path');
 
 

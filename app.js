@@ -5,9 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var serverConfig = require('./config');
+process.env.root = serverConfig.root ;
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var article = require('./control/articleCenter');
 //control 
 var data = require('./control/data');
 var center = require('./control/controlCenter');
@@ -31,7 +34,7 @@ app.use(WebpackHotMiddleware(compiler, {
   log: console.log
 }));
 
-
+console.log('heheda='+ process.env.TITLE);
 console.log('dirname='+__dirname);
 console.log('app.js');
 // view engine setup
@@ -46,15 +49,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // jsonrouter pagerouter
-app.use('/', routes);
+app.use('/article', article);
 app.use('/users', users);
+app.use('/data', data);
+app.use('/', routes);
+
+
+//不管什么路径都给出这个,而且每次页面跳转都会访问这个。
 app.get('*', function (req, res) {
   console.log('one request from client to server.')
   res.sendFile(path.join(__dirname,'/routes/index.html'))
 })
 
 //control
-app.use('/data', data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

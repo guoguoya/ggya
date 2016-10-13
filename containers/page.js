@@ -12,7 +12,7 @@ export default class Page extends Component  {
     return (
       <div>
         <LeftNavigation index={ leftToggleActive } toggle= { index => { console.log(index); dispatch(leftToggleChange(index))} }></LeftNavigation>
-        <button onClick={ e => { console.log(e.target.tagName); dispatch(fetchPost('/home/json'))} }> click </button>
+        <button onClick={ e => { console.log(e.target.tagName); dispatch(fetchPost('/article/react/1'))} }> click </button>
         <div>{ fetchState.status }</div>
         <div>{ JSON.stringify(fetchState) }</div>
         <a href='/'>to home</a>

@@ -2,8 +2,8 @@ var express = require('express');
 var path = require('path');
 
 
-/*var routes = require('./routes/index');
-var users = require('./routes/users');*/
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 //control 
 var data = require('./control/data');
@@ -19,10 +19,10 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
 // jsonrouter pagerouter
-/*app.use('/', routes);
-app.use('/users', users);*/
-//control
-app.use('/data', data);
+app.use('/', index);
+app.use('/users', users);
+//control 未完成
+/*app.use('/data', data);*/
 //路由同构
 /*import compression from 'compression'
 app.use(compression())*/
@@ -42,33 +42,40 @@ console.log('appRrod.js');
 let store = createStore(mainreducers, 
   applyMiddleware(thunkMiddleware)
 );
+
+
+// send all requests to index.html so browserHistory works
+app.get('*', (req, res) => {
+  match({ routes, location: req.url }, (err, redirect, props) => {
+    if (err) {
+      res.status(500).send(err.message)
+    } else if (redirect) {
+      res.redirect(redirect.pathname + redirect.search)
+    } else if (props) {
+      // hey we made it!
+      const appHtml = renderToString(
+        <Provider store={ store } >
+          <RouterContext {...props}/>
+        </Provider>
+      )
+      res.send(renderPage(appHtml))
+    } else {
+      res.status(404).send('Not Found')
+    }
+  })
+})
+
 function renderPage(appHtml) {
   return `
-    <!DOCTYPE html>
+    <!doctype html public="storage">
     <html>
     <meta charset=utf-8/>
     <title>My First React Router App</title>
-    <div id="basePage">${appHtml}</div>
+    <link rel=stylesheet href=/index.css>
+    <div id=app>${appHtml}</div>
     <script src="/bundle.js"></script>
-    </html>
    `
 }
-app.get('*', function(req,res){
-    console.log('server accept');
-    match({ routes: routes, location: req.url } , function(err, redirect, props){
-      console.log('match response');
-      if (err) {
-        res.status(500).send(err.message)
-      }
-       else{
-        const appHtml = renderToString(
-          <RouterContext {...props}/>
-        )
-        console.log(appHtml);
-       res.send(renderPage(appHtml))
-      }
-    });
-});
 
 
 // catch 404 and forward to error handler

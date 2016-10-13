@@ -9,10 +9,7 @@ dataRouter.get('/', function(req, res, next){
 });
 
 dataRouter.post('/', function(req, res, next){
-    res.json({ 
-        name : 'yujiabin',
-        age: '23'
-    });
+    res.json({ 'item': 'items'});
 });
 
 module.exports = dataRouter ;

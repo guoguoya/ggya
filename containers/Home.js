@@ -10,9 +10,10 @@ export default class Home extends Component {
         return (
           <div>
             <div>Home</div>
-            <Link to='/home'>home</Link>
+            <Link to='/'>home</Link>
             <Link to='/article'>article</Link>
             <Link to='/page'>page</Link>
+            { this.props.children }
           </div>
         );
     }
